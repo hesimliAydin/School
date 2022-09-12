@@ -14,8 +14,6 @@
 		Console.WriteLine($"Surname : {Surname}");
 		Console.WriteLine($"Age : {Age}");
 		
-		Exam?.ShowExam();
-		
 		Console.WriteLine();
 		Console.ResetColor();
 	}

@@ -23,6 +23,8 @@
 		foreach (var t in teachers)
 			t.ShowTeacher();
 		
+
+		
 		Console.WriteLine();
 		Console.ResetColor();
 	}

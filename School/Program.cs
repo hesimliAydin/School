@@ -2,7 +2,7 @@
 {
 	static void Main()
 	{
-		Random random = new Random();
+		Random random = new Random(); 
 
 		int count = 4;
 		int[] scores = new int[count];
@@ -21,20 +21,6 @@
 			Lesson = "History",
 			Score = scores[1],
 			ExamTime = new DateTime(2021, 06, 25, 09, 40, 00)
-		};
-
-		Exam exam3 = new Exam
-		{
-			Lesson = "Chemistry",
-			Score = scores[2],
-			ExamTime = new DateTime(2021, 06, 25, 10, 20, 00)
-		};
-
-		Exam exam4 = new Exam
-		{
-			Lesson = "Biology",
-			Score = scores[2],
-			ExamTime = new DateTime(2021, 06, 25, 10, 20, 00)
 		};
 
 		Student student1 = new Student
@@ -58,19 +44,19 @@
 		Student student3 = new Student
 		{
 			ID = Guid.NewGuid(),
-			Name = "Ruslan",
-			Surname = "Necefli",
+			Name = "Isa",
+			Surname = "Memmedli",
 			Age = 20,
-			Exam = exam3
+			Exam = exam1
 		};
 
 		Student student4 = new Student
 		{
 			ID = Guid.NewGuid(),
-			Name = "Murad",
-			Surname = "Agayev",
-			Age = 20,
-			Exam = exam4
+			Name = "Emin",
+			Surname = "Novruz",
+			Age = 23,
+			Exam = exam2
 		};
 
 		Group group1 = new Group
@@ -84,8 +70,8 @@
 		{
 			GroupName = "HISTORY GROUP",
 		};
-		group2.AddStudent(ref student3);
-		group2.AddStudent(ref student4);
+		group2.AddStudent(ref student1);
+		group2.AddStudent(ref student2);
 
 		Teacher teacher1 = new Teacher
 		{
@@ -110,7 +96,7 @@
 		
 		Console.WriteLine();
 
-		int choice = Convert.ToInt32(GetSelect("\t\tWelcome to School...\n\nPlease, enter your selection\n", new string[] { "SCHOOL INFORMATION", "EXAMS", "EXIT" }) + 1);
+		int choice = Convert.ToInt32(GetSelect("\t\tWelcome to School...\n\nPlease, enter your selection\n", new string[] { "EXAMS", "SCHOOL INFORMATION", "CREATE STUDENT", "EXIT" }) + 1);
 
 		if (choice == 1)
 		{
@@ -120,11 +106,44 @@
 		else if (choice == 2)
 		{
 			Console.Clear();
-			teacher1.StartExam("Mathemathics", "MATHEMATHICS");
-			teacher2.StartExam("History", "HISTORY");
-			teacher1.StartExam("Chemistry", "CHEMISTRY");
+			int select = Convert.ToInt32(GetSelect("\n\nSelect any group\n\n", new string[] { "MATHEMATHICS GROUP", "HISTORY GROUP", "EXIT" }) + 1);
+
+			if (select == 1)
+			{
+				Console.Clear();
+				teacher1.ShowTeacher();
+				Thread.Sleep(1500);
+				student1.ShowStudent();
+				student2.ShowStudent();
+			}
+			else if (select == 2)
+			{
+				Console.Clear();
+				teacher2.ShowTeacher();
+				Thread.Sleep(1500);
+				student3.ShowStudent();
+				student4.ShowStudent();
+			}
+			else if (select == 3)
+				Environment.Exit(0);
 		}
 		else if (choice == 3)
+        {
+            Console.Write("Enter name : ");
+			string? name = Console.ReadLine();
+			Console.Write("Enter surname : ");
+			string? surname = Console.ReadLine();
+			
+			Student student5 = new Student
+			{
+				Name = name,
+				Surname = surname,
+				Age = 23
+			};
+
+			group1.AddStudent(ref student5);
+		}
+		else if (choice == 4)
 			Environment.Exit(0);	
 	}
 }
